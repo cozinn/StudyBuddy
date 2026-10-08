@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f3ff">
+  <meta name="description" content="StudyBuddy is your calm, cheerful space to plan, focus, and learn.">
+  <title>StudyBuddy — Your study space</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#dashboard" aria-label="StudyBuddy home">
+        <span class="brand-mark" aria-hidden="true">✿</span>
+        <span>study<span class="brand-accent">buddy</span><small>your happy study space</small></span>
+      </a>
+      <p class="nav-label">MENU</p>
+      <nav class="main-nav">
+        <button class="nav-link active" data-view="dashboard"><span>⌂</span> Dashboard</button>
+        <button class="nav-link" data-view="planner"><span>▤</span> Study planner</button>
+        <button class="nav-link" data-view="focus"><span>◷</span> Focus timer</button>
+        <button class="nav-link" data-view="flashcards"><span>▧</span> Flashcards</button>
+        <button class="nav-link" data-view="quizzes"><span>✎</span> Quiz maker</button>
+        <button class="nav-link" data-view="notes"><span>▱</span> My notes</button>
+        <button class="nav-link" data-view="subjects"><span>◈</span> Subjects</button>
+        <button class="nav-link" data-view="progress"><span>▥</span> Progress</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-note"><span aria-hidden="true">🌱</span><strong>Little steps add up.</strong><p>Keep showing up for yourself.</p></div>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode"><span id="theme-icon" aria-hidden="true">☾</span><span id="theme-label">Dark mode</span><span class="toggle-track"><i></i></span></button>
+        <p class="sidebar-foot">Made for your next big idea <span>♡</span></p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+        <div class="breadcrumb">Your space <span>/</span> <strong id="current-page">Dashboard</strong></div>
+        <div class="topbar-right"><span class="today-label" id="today-label"></span><div class="avatar" aria-label="Student profile">S</div></div>
+      </header>
+
+      <section class="view active" id="dashboard-view" aria-labelledby="welcome-title">
+        <div class="welcome-banner">
+          <div class="welcome-copy"><span class="eyebrow">YOUR STUDY SPACE ✨</span><h1 id="welcome-title">Hey, Student!<br>Ready to study?</h1><p>A little progress each day adds up to big results.</p><button class="button button-white" data-go="planner" type="button">Plan your day <span aria-hidden="true">→</span></button></div>
+          <div class="welcome-art" aria-hidden="true"><div class="art-sun"></div><div class="art-book">✦</div><span class="sparkle sparkle-one">✧</span><span class="sparkle sparkle-two">✦</span><span class="art-caption">you've got this!</span></div>
+        </div>
+        <div class="section-heading"><div><span class="eyebrow">A QUICK LOOK</span><h2>Your progress</h2></div><button class="text-button" data-go="progress" type="button">See all progress <span>→</span></button></div>
+        <div class="stat-grid">
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon lavender">✓</span><span class="stat-kicker">THIS WEEK</span></div><strong id="dash-tasks">0</strong><p>tasks completed</p><div class="mini-progress"><span id="dash-task-bar"></span></div><small id="dash-task-caption">A fresh start is a great start</small></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon peach">◷</span><span class="stat-kicker">TOTAL FOCUS</span></div><strong><span id="dash-focus">0</span><em> min</em></strong><p>time well spent</p><div class="mini-progress peach-bar"><span id="dash-focus-bar"></span></div><small>Every focused minute counts</small></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon mint">✎</span><span class="stat-kicker">QUIZ AVERAGE</span></div><strong><span id="dash-quiz">—</span><em id="dash-quiz-unit"></em></strong><p>latest quiz scores</p><div class="mini-progress mint-bar"><span id="dash-quiz-bar"></span></div><small id="dash-quiz-caption">Take a quiz to see your score</small></article>
+        </div>
+        <div class="dashboard-grid">
+          <article class="panel today-panel"><div class="panel-heading"><div><span class="eyebrow">YOUR CHECKLIST</span><h2>Today's tasks</h2></div><button class="icon-button" data-go="planner" type="button" aria-label="Open study planner">↗</button></div><div id="dashboard-tasks" class="dashboard-task-list"></div><button class="button button-soft button-full" data-go="planner" type="button">+ Add a task</button></article>
+          <article class="panel motivation-panel"><div class="motivation-top"><span class="eyebrow">A LITTLE REMINDER</span><span class="motivation-flower" aria-hidden="true">✿</span></div><blockquote id="motivation-quote"></blockquote><p id="motivation-author"></p><button class="text-button" id="new-quote" type="button">Another little boost <span>↻</span></button></article>
+        </div>
+      </section>
+
+      <section class="view" id="planner-view" aria-labelledby="planner-title">
+        <div class="page-intro"><span class="eyebrow">MAKE SPACE FOR WHAT MATTERS</span><h1 id="planner-title">Study planner <span>🗓️</span></h1><p>Turn your to-dos into tiny, doable steps.</p></div>
+        <div class="panel form-panel"><h2 id="task-form-title">Add a task</h2><form id="task-form" class="form-grid">
+          <label class="field field-wide">Task name<input id="task-title" name="title" type="text" placeholder="e.g. Review chapter 3" maxlength="100" required></label>
+          <label class="field">Subject<select id="task-subject" name="subject"></select></label>
+          <label class="field">Deadline<input id="task-deadline" name="deadline" type="date"></label>
+          <div class="form-actions field-wide"><button class="button button-primary" id="task-submit" type="submit">Add task <span>＋</span></button><button class="button button-ghost hidden" id="task-cancel" type="button">Cancel edit</button></div>
+        </form></div>
+        <div class="section-heading compact-heading"><div><span class="eyebrow">ONE THING AT A TIME</span><h2>Your tasks <span class="count-pill" id="task-count">0</span></h2></div><label class="filter-label">Show <select id="task-filter" aria-label="Filter tasks"><option value="all">All tasks</option><option value="active">To do</option><option value="done">Completed</option></select></label></div>
+        <div id="task-list" class="task-list"></div>
+      </section>
+
+      <section class="view" id="focus-view" aria-labelledby="focus-title">
+        <div class="page-intro"><span class="eyebrow">FOCUS, THEN REST</span><h1 id="focus-title">Focus timer <span>🍅</span></h1><p>One session at a time. You can do this.</p></div>
+        <div class="focus-layout"><article class="panel timer-panel"><div class="timer-tabs" role="group" aria-label="Timer mode"><button class="timer-tab active" data-mode="focus" type="button">Focus</button><button class="timer-tab" data-mode="short" type="button">Short break</button><button class="timer-tab" data-mode="long" type="button">Long break</button></div><div class="timer-ring" id="timer-ring"><div class="timer-inner"><span class="timer-mode-label" id="timer-mode-label">TIME TO FOCUS</span><strong id="timer-display" role="timer" aria-live="off">25:00</strong><span class="timer-session" id="timer-session">Let's make it count</span></div></div><div class="timer-controls"><button class="button button-primary" id="timer-start" type="button">Start focus</button><button class="button button-ghost" id="timer-reset" type="button">Reset</button></div><p class="timer-hint" id="timer-hint">Focus sessions are saved to your study time.</p></article><aside class="panel timer-side"><span class="eyebrow">THE POMODORO WAY</span><h2>Small sprints,<br>big progress.</h2><div class="pomodoro-steps"><p><span>01</span> Focus for 25 minutes</p><p><span>02</span> Take a short breather</p><p><span>03</span> After 4 sessions, rest longer</p></div><div class="session-count"><span>FOCUS SESSIONS TODAY</span><strong id="session-count">0</strong><small>Keep up the lovely work ✨</small></div></aside></div>
+      </section>
+
+      <section class="view" id="flashcards-view" aria-labelledby="flashcards-title">
+        <div class="page-intro"><span class="eyebrow">REMEMBER A LITTLE MORE</span><h1 id="flashcards-title">Flashcards <span>🪄</span></h1><p>Make a card, flip it over, and see what you know.</p></div>
+        <div class="panel form-panel"><h2 id="card-form-title">Create a flashcard</h2><form id="card-form" class="form-grid"><label class="field">Subject<select id="card-subject" required></select></label><label class="field">Card color<select id="card-color"><option value="lilac">Lilac</option><option value="peach">Peach</option><option value="mint">Mint</option></select></label><label class="field field-wide">Front of card<input id="card-front" type="text" maxlength="180" placeholder="A question or key term" required></label><label class="field field-wide">Back of card<textarea id="card-back" rows="2" maxlength="500" placeholder="The answer or explanation" required></textarea></label><div class="form-actions field-wide"><button class="button button-primary" id="card-submit" type="submit">Save flashcard <span>＋</span></button><button class="button button-ghost hidden" id="card-cancel" type="button">Cancel edit</button></div></form></div>
+        <div class="section-heading compact-heading"><div><span class="eyebrow">YOUR DECK</span><h2>Cards to review <span class="count-pill" id="card-count">0</span></h2></div><label class="filter-label">Subject <select id="card-filter" aria-label="Filter flashcards by subject"><option value="all">All subjects</option></select></label></div><div id="flashcard-list" class="flashcard-grid"></div>
+      </section>
+
+      <section class="view" id="quizzes-view" aria-labelledby="quizzes-title">
+        <div class="page-intro"><span class="eyebrow">PRACTICE MAKES PROGRESS</span><h1 id="quizzes-title">Quiz maker <span>🧠</span></h1><p>Create a quick quiz for yourself, then put your knowledge to the test.</p></div>
+        <div class="panel form-panel"><h2>Create a quiz</h2><form id="quiz-question-form" class="form-grid"><label class="field">Quiz title<input id="quiz-title" type="text" maxlength="80" placeholder="e.g. Cell biology review" required></label><label class="field">Subject<select id="quiz-subject" required></select></label><label class="field field-wide">Question<input id="quiz-question" type="text" maxlength="200" placeholder="What would you like to ask?" required></label><label class="field">Option A<input id="quiz-option-0" type="text" maxlength="120" required></label><label class="field">Option B<input id="quiz-option-1" type="text" maxlength="120" required></label><label class="field">Option C<input id="quiz-option-2" type="text" maxlength="120" required></label><label class="field">Option D<input id="quiz-option-3" type="text" maxlength="120" required></label><label class="field">Correct answer<select id="quiz-correct"><option value="0">Option A</option><option value="1">Option B</option><option value="2">Option C</option><option value="3">Option D</option></select></label><div class="form-actions field-wide"><button class="button button-soft" id="add-question" type="button">Add question to quiz <span>＋</span></button><button class="button button-primary" id="save-quiz" type="submit">Save quiz <span>✓</span></button></div></form><div id="quiz-draft-list" class="quiz-draft-list"></div></div>
+        <div class="section-heading compact-heading"><div><span class="eyebrow">READY WHEN YOU ARE</span><h2>Your quizzes <span class="count-pill" id="quiz-count">0</span></h2></div></div><div id="quiz-list" class="quiz-list"></div>
+        <div class="panel quiz-player hidden" id="quiz-player" aria-live="polite"></div>
+      </section>
+
+      <section class="view" id="notes-view" aria-labelledby="notes-title">
+        <div class="page-intro"><span class="eyebrow">YOUR THOUGHTS, ALL IN ONE PLACE</span><h1 id="notes-title">My notes <span>📝</span></h1><p>Save the important bits so future-you can find them.</p></div>
+        <div class="panel form-panel"><h2 id="note-form-title">Write a note</h2><form id="note-form" class="form-grid"><label class="field">Note title<input id="note-title" type="text" maxlength="100" placeholder="Give your note a name" required></label><label class="field">Subject<select id="note-subject" required></select></label><label class="field field-wide">Your notes<textarea id="note-content" rows="5" maxlength="5000" placeholder="Write anything you want to remember..." required></textarea></label><div class="form-actions field-wide"><button class="button button-primary" id="note-submit" type="submit">Save note <span>✓</span></button><button class="button button-ghost hidden" id="note-cancel" type="button">Cancel edit</button></div></form></div>
+        <div class="section-heading compact-heading"><div><span class="eyebrow">YOUR NOTEBOOK</span><h2>Saved notes <span class="count-pill" id="note-count">0</span></h2></div><label class="filter-label">Find <input id="note-search" type="search" placeholder="Search notes..." aria-label="Search notes"></label></div><div id="notes-list" class="notes-grid"></div>
+      </section>
+
+      <section class="view" id="subjects-view" aria-labelledby="subjects-title">
+        <div class="page-intro"><span class="eyebrow">A PLACE FOR EVERY SUBJECT</span><h1 id="subjects-title">Subject organizer <span>📚</span></h1><p>Keep all your learning neatly grouped by class.</p></div>
+        <div class="panel form-panel"><h2>Add a subject</h2><form id="subject-form" class="subject-form"><label class="field">Subject name<input id="subject-name" type="text" maxlength="40" placeholder="e.g. World History" required></label><button class="button button-primary" type="submit">Add subject <span>＋</span></button></form></div><div class="section-heading compact-heading"><div><span class="eyebrow">YOUR CLASSES</span><h2>All subjects <span class="count-pill" id="subject-count">0</span></h2></div></div><div id="subject-list" class="subject-grid"></div>
+      </section>
+
+      <section class="view" id="progress-view" aria-labelledby="progress-title">
+        <div class="page-intro"><span class="eyebrow">LOOK HOW FAR YOU'VE COME</span><h1 id="progress-title">Your progress <span>🌷</span></h1><p>Every task, session, and quiz is a win worth celebrating.</p></div>
+        <div class="stat-grid progress-stat-grid"><article class="stat-card"><div class="stat-top"><span class="stat-icon lavender">✓</span><span class="stat-kicker">TASKS DONE</span></div><strong id="progress-tasks">0</strong><p>out of <span id="progress-total-tasks">0</span> planned</p><div class="mini-progress"><span id="progress-task-bar"></span></div></article><article class="stat-card"><div class="stat-top"><span class="stat-icon peach">◷</span><span class="stat-kicker">FOCUS TIME</span></div><strong><span id="progress-focus">0</span><em> min</em></strong><p>minutes of focused study</p><div class="mini-progress peach-bar"><span id="progress-focus-bar"></span></div></article><article class="stat-card"><div class="stat-top"><span class="stat-icon mint">✎</span><span class="stat-kicker">QUIZ AVERAGE</span></div><strong><span id="progress-quiz">—</span><em id="progress-quiz-unit"></em></strong><p id="progress-quiz-count">No quizzes completed yet</p><div class="mini-progress mint-bar"><span id="progress-quiz-bar"></span></div></article></div>
+        <div class="progress-layout"><article class="panel"><div class="panel-heading"><div><span class="eyebrow">YOUR STUDY MIX</span><h2>Tasks by subject</h2></div></div><div id="subject-chart" class="subject-chart"></div></article><article class="panel"><div class="panel-heading"><div><span class="eyebrow">RECENT WINS</span><h2>Quiz scores</h2></div></div><div id="score-history" class="score-history"></div></article></div>
+      </section>
+      <footer class="app-footer">Made with a little focus and a lot of heart <span>♡</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
